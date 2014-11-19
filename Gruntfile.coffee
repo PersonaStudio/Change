@@ -1,73 +1,77 @@
 module.exports = (grunt) ->
-  getCopyConfig = (mode) ->
-    global =
-      expand: true
-      cwd: 'app'
-      src: ['**', '!**/*.coffee']
-      dest: 'target'
-      options:
-        noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
-    switch mode
-      when 'dev'
-        global.options.process = (content) -> content.replace /@dev{([^\}]*)}/, (match, body) -> body.trim()
-      when 'prod'
-        global.options.process = (content) -> content.replace /@dev{[^\}]*}/, ''
-    global
-
   grunt.initConfig
+    pkg: grunt.file.readJSON 'package.json'
+
     watch:
-      compile:
-        files: ['app/**']
-        tasks: ['compile']
+      dev:
+        expand: true
+        cwd: 'app'
+        files: ['**/*.html', '**/*.coffee']
+        tasks: ['copy:debug', 'coffee:compile']
+      coffee:
+        files: 'app/*.coffee'
+        tasks: ['coffee:dev']
+      express:
+        files: 'server.js'
+        tasks: ['express:dev']
         options:
           spawn: false
+
+    express:
+      dev:
+        options:
+          script: 'server.js'
+          node_env: 'dev'
+          port: 3030
+      prod:
+        options:
+          script: ''
+          node_env: 'prod'
 
     coffee:
       compile:
         expand: true
         cwd: 'app'
         src: ['**/*.coffee']
-        dest: 'target'
+        dest: 'target/'
         ext: '.js'
-
-    clean:
-      all: ['target', 'dist', 'distTemp']
-      postDist: ['target', 'distTemp']
+      compileJoined:
+        options:
+          join: true
+        files:
+          'app/js/application.js':
+            ['**/*.coffee']
 
     copy:
-      compile: getCopyConfig 'dev'
-      distTemp: getCopyConfig 'prod'
-      dist:
-        files: [
-          expand: true, cwd: 'distTemp', src: ['bower_components/bootstrap-css-only/fonts/**'], dest: 'dist/', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
-        ,
-          expand: true, cwd: 'distTemp', src: ['bower_components/fontawesome/fonts/**'], dest: 'dist/', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
-        ,
-          expand: true, cwd: 'distTemp', src: ['img/**'], dest: 'dist/', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
-        ,
-          expand: true, cwd: 'distTemp', src: ['**/*.html'], dest: 'dist/'
-        ,
-          expand: true, cwd: 'distTemp', src: ['css/**'], dest: 'dist/'
-        ,
-          expand: true, cwd: 'distTemp', src: ['js/boot.js'], dest: 'dist/'
-        ,
-          expand: true, cwd: 'distTemp', src: ['fonts/**'], dest: 'dist/'
-        ]
+      debug:
+        expand: true
+        cwd: 'app'
+        src: ['**', '!**/*.coffee', '!lib/bower_components/*.*']
+        dest: 'target/'
+      dev:
+        expand: true
+        cwd: 'app'
+        src: ['**', '!**/*.coffee']
+        dest: 'target/'
 
-    requirejs:
-      dist:
-        options:
-          mainConfigFile: 'target/js/config.js'
-          appDir: 'target'
-          dir: 'distTemp'
 
-  grunt.loadNpmTasks 'grunt-contrib-watch'
+    clean:
+      all:
+        src: ['target']
+
+  grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-requirejs'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-express-server'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
 
-  grunt.registerTask 'default', ['compile', 'watch:compile']
-  grunt.registerTask 'compile', ['clean:all', 'copy:compile', 'coffee:compile']
-  grunt.registerTask 'compileDist', ['clean:all', 'copy:distTemp', 'coffee:compile']
-  grunt.registerTask 'dist', ['compileDist', 'requirejs', 'copy:dist', 'clean:postDist']
+  grunt.registerTask 'dev', ['clean:all', 'copy:dev', 'coffee:compile']
+  grunt.registerTask "default", ['dev', 'express:dev', 'watch:dev', 'watch:express']
+
+
+
+
+
+
+
