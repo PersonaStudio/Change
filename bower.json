@@ -1,0 +1,13 @@
+{
+  "name": "Change",
+  "devDependencies": {
+    "requirejs": "~2.1.14",
+    "fontawesome": "~4.2.0",
+    "angular": "~1.2.23",
+    "angular-animate": "~1.2.23",
+    "angular-scroll": "~0.6.1",
+    "bootstrap-css-only": "~3.2.0",
+    "angular-bootstrap": "~0.11.0",
+    "ui-router": "~0.2.11"
+  }
+}
