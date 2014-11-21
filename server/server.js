@@ -2,15 +2,26 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   path = require('path'),
   mongoose = require('mongoose');
+  methodOverride = require('method-override');
   rootFolder = '';
 
 ////////  CONFIGURATION
 var app = module.exports = express();
-require('./config')(app, process, rootFolder, bodyParser);
+if (process.env.NODE_ENV == 'dev') {
+  rootFolder = 'client/';
+}
+app.set('port', process.env.PORT || 8080);
+rootFolder = ((__dirname + rootFolder).replace('server', ''));
+app.set('views', rootFolder);
+
+app.use(methodOverride());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(rootFolder));
 
 ////////  ROUTING
 app.get('/', function (req, res) {
-  res.sendFile('/login/index.html', {root: rootFolder});
+  res.sendFile('login/index.html', {root: rootFolder});
 });
 
 app.post('/login', function (req, res) {
@@ -18,7 +29,7 @@ app.post('/login', function (req, res) {
 });
 
 app.post('/signup', function (req, res) {
-  console.log(req.body);
+  //console.log(req.body);
 });
 
 

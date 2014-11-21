@@ -1,6 +1,6 @@
 require [
   'angular'
-  './main'
+  'login'
   'angular-animate'
   'ui-bootstrap'], (
   angular

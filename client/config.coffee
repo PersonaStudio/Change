@@ -1,5 +1,6 @@
 require.config
-  baseUrl: '.'
+  baseUrl: 'http://localhost:3030/'
+  packages: ['login']
   paths:
     angular: 'lib/bower_components/angular/angular'
     'angular-animate': 'lib/bower_components/angular-animate/angular-animate'

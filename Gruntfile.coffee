@@ -3,24 +3,31 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
 
     watch:
-      dev:
-        expand: true
-        cwd: 'app'
-        files: ['**/*.html', '**/*.coffee']
-        tasks: ['copy:debug', 'coffee:compile']
-      coffee:
-        files: 'app/*.coffee'
-        tasks: ['coffee:dev']
-      express:
-        files: 'server.js'
-        tasks: ['express:dev']
+      template:
         options:
-          spawn: false
+          cwd: 'client'
+        files: ['**', '!**/*.coffee', '!lib/bower_components/*.*']
+        tasks: ['copy:template']
+      client:
+        options:
+          cwd: 'client'
+        files: ['**/*.coffee']
+        tasks: ['coffee:client']
+      server:
+        options:
+          cwd: 'server'
+        files: ['**/*.coffee', '**/*.js']
+        tasks: ['copy:server', 'coffee:server', 'express:dev']
+#       express:
+#        files: 'server.js'
+#        tasks: ['express:dev']
+#        options:
+#          spawn: false
 
     express:
       dev:
         options:
-          script: 'server.js'
+          script: 'target/server/server.js'
           node_env: 'dev'
           port: 3030
       prod:
@@ -29,45 +36,53 @@ module.exports = (grunt) ->
           node_env: 'prod'
 
     coffee:
-      compile:
+      options:
         expand: true
-        cwd: 'app'
+      server:
+        cwd: 'server'
         src: ['**/*.coffee']
-        dest: 'target/'
+        dest: 'target/server'
         ext: '.js'
-      compileJoined:
-        options:
-          join: true
-        files:
-          'app/js/application.js':
-            ['**/*.coffee']
+      client:
+        expand: true
+        cwd: 'client'
+        src: ['**/*.coffee']
+        dest: 'target/client'
+        ext: '.js'
 
     copy:
-      debug:
+      template:
         expand: true
-        cwd: 'app'
-        src: ['**', '!**/*.coffee', '!lib/bower_components/*.*']
-        dest: 'target/'
-      dev:
+        cwd: 'client'
+        src: ['**', '!**/*.coffee', '!lib/bower_components/**']
+        dest: 'target/client'
+      lib:
         expand: true
-        cwd: 'app'
-        src: ['**', '!**/*.coffee']
-        dest: 'target/'
+        cwd: 'client'
+        src: ['lib/**']
+        dest: 'target/client'
 
+      server:
+        expand: true
+        cwd: 'server'
+        src: ['**', '!**/*.coffee']
+        dest: 'target/server'
 
     clean:
       all:
         src: ['target']
 
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
+#  grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-express-server'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
 
-  grunt.registerTask 'dev', ['clean:all', 'copy:dev', 'coffee:compile']
-  grunt.registerTask "default", ['dev', 'express:dev', 'watch:dev', 'watch:express']
+  grunt.registerTask 'dev', ['clean:all', 'copy', 'coffee']
+  grunt.registerTask 'watchClient', ['watch:template', 'watch:client']
+  grunt.registerTask 'watchServer', ['watch:server']
+  grunt.registerTask "default", ['dev', 'express:dev', 'watch']
 
 
 
