@@ -1,8 +1,10 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
   path = require('path'),
-  mongoose = require('mongoose');
-  methodOverride = require('method-override');
+  mongoose = require('mongoose'),
+  methodOverride = require('method-override'),
+  cookieParser = require('cookie-parser');
+
 
   var config = require('./config');
 
@@ -15,6 +17,7 @@ app.set('port', process.env.PORT || 8080);
 config.rootFolder = ((__dirname + config.rootFolder).replace('server', ''));
 app.set('views', config.rootFolder);
 
+app.use(cookieParser());
 app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

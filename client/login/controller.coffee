@@ -15,6 +15,6 @@ define ['angular'], (angular) ->
         restService.signupRequest($scope.userName, $scope.password)
         .then (data) ->
           if data.status is 'success'
-            restService.getGame()
+            location.reload()
           return
         return

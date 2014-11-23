@@ -18,15 +18,3 @@ define ['angular'], (angular) ->
       .success (data) ->
         defer.resolve data
       defer.promise
-
-    getGame: ->
-      @$http.get '/game'
-      return
-
-
-
-
-
-
-
-
