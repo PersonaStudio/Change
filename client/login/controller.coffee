@@ -7,20 +7,14 @@ define ['angular'], (angular) ->
         restService.loginRequest($scope.userName, $scope.password)
         .then (data) ->
           if data.status is 'success'
-            console.log data
+            location.reload()
           return
         return
 
       $scope.signup = ->
-      restService.signupRequest($scope.userName, $scope.password)
-      .then (data) ->
-        if data.status is 'success'
-          console.log data
+        restService.signupRequest($scope.userName, $scope.password)
+        .then (data) ->
+          if data.status is 'success'
+            restService.getGame()
+          return
         return
-      return
-
-
-
-
-
-

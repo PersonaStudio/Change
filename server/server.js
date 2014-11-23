@@ -3,34 +3,26 @@ var express = require('express'),
   path = require('path'),
   mongoose = require('mongoose');
   methodOverride = require('method-override');
-  rootFolder = '';
+
+  var config = require('./config');
 
 ////////  CONFIGURATION
 var app = module.exports = express();
 if (process.env.NODE_ENV == 'dev') {
-  rootFolder = 'client/';
+  config.rootFolder = 'client/';
 }
 app.set('port', process.env.PORT || 8080);
-rootFolder = ((__dirname + rootFolder).replace('server', ''));
-app.set('views', rootFolder);
+config.rootFolder = ((__dirname + config.rootFolder).replace('server', ''));
+app.set('views', config.rootFolder);
 
 app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(rootFolder));
+app.use(express.static(config.rootFolder));
 
 ////////  ROUTING
-app.get('/', function (req, res) {
-  res.sendFile('login/index.html', {root: rootFolder});
-});
+require('./routes')(app);
 
-app.post('/login', function (req, res) {
-  console.log(req.body);
-});
-
-app.post('/signup', function (req, res) {
-  //console.log(req.body);
-});
 
 
 app.listen(app.get('port'), function () {

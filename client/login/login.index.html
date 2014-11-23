@@ -61,7 +61,7 @@
         <!-- /.container -->
     </nav>
 
-    <header class="intro">
+    <header class="intro" ng-controller="LoginCtrl">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -70,8 +70,8 @@
                         <input type="text" placeholder="Username" ng-model="userName" class="form-control input-space col-md-8 col-md-offset-2">
                         <input type="text" placeholder="Password" ng-model="password" class="form-control input-space col-md-8 col-md-offset-2">
                         <div class="col-xs-12">
-                          <button class="center-block btn" ng-click="login()" >Log in </button>
-                          <button class="center-block btn" ng-click="signup()" >Sign up </button>
+                          <button class=" btn" ng-click="login()" >Log in </button>
+                          <button class=" btn" ng-click="signup()" >Sign up </button>
                         </div>
                     </div>
                 </div>

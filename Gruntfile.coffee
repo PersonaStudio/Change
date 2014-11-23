@@ -36,9 +36,8 @@ module.exports = (grunt) ->
           node_env: 'prod'
 
     coffee:
-      options:
-        expand: true
       server:
+        expand: true
         cwd: 'server'
         src: ['**/*.coffee']
         dest: 'target/server'

@@ -1,25 +1,19 @@
 require.config
   baseUrl: 'http://localhost:3030/'
-  packages: ['login']
+  packages: ['login', 'main']
   paths:
     angular: 'lib/bower_components/angular/angular'
     'angular-animate': 'lib/bower_components/angular-animate/angular-animate'
-    'angular-scroll': 'lib/bower_components/angular-scroll/angular-scroll'
     requireLib: 'lib/bower_components/requirejs/require'
     'ui-bootstrap': 'lib/bower_components/angular-bootstrap/ui-bootstrap-tpls'
     config: 'config'
-    'ui-router': 'lib/bower_components/ui-router/release/angular-ui-router'
 
   shim:
     angular:
       exports: 'angular'
     'angular-animate':
       deps: ['angular']
-    'angular-scroll':
-      deps: ['angular']
     'ui-bootstrap':
-      deps: ['angular']
-    'ui-router':
       deps: ['angular']
 
 # optimization config
