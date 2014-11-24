@@ -6,9 +6,10 @@ var express = require('express'),
   cookieParser = require('cookie-parser');
 
 
-  var config = require('./config');
-
+var config = require('./config');
 ////////  CONFIGURATION
+mongoose.connect('mongodb://localhost/change');
+
 var app = module.exports = express();
 if (process.env.NODE_ENV == 'dev') {
   config.rootFolder = 'client/';
@@ -23,10 +24,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(config.rootFolder));
 
+//////// CONFIG PASSPORT
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({
+  secret: 'thisisacoolproject',
+  saveUninitialized: true,
+  resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passport')(passport);
+
 ////////  ROUTING
-require('./routes')(app);
-
-
+require('./routes')(app, passport);
 
 app.listen(app.get('port'), function () {
   console.log('Express server on mode ' + process.env.NODE_ENV);

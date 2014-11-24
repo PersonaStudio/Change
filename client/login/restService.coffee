@@ -5,16 +5,16 @@ define ['angular'], (angular) ->
       @q = $q
       return
 
-    loginRequest: (userName, password) ->
+    loginRequest: (username, password) ->
       defer = @q.defer()
-      @$http.post '/login', {userName: userName, password: password}
+      @$http.post '/login', {username: username, password: password}
       .success (data) ->
         defer.resolve data
       defer.promise
 
-    signupRequest: (userName, password) ->
+    signupRequest: (username, password) ->
       defer = @q.defer()
-      @$http.post '/signup', {userName: userName, password: password}
+      @$http.post '/signup', {username: username, password: password}
       .success (data) ->
         defer.resolve data
       defer.promise

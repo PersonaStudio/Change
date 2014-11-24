@@ -1,10 +1,9 @@
 define ['angular'], (angular) ->
 
-
   class LoginCtrl
     constructor: ($scope, restService) ->
       $scope.login = ->
-        restService.loginRequest($scope.userName, $scope.password)
+        restService.loginRequest($scope.username, $scope.password)
         .then (data) ->
           if data.status is 'success'
             location.reload()
@@ -12,7 +11,7 @@ define ['angular'], (angular) ->
         return
 
       $scope.signup = ->
-        restService.signupRequest($scope.userName, $scope.password)
+        restService.signupRequest($scope.username, $scope.password)
         .then (data) ->
           if data.status is 'success'
             location.reload()
