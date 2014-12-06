@@ -11,10 +11,11 @@ define ['Phaser', './loading'], (Phaser, Loading) ->
     create: ->
       @game.stage.backgroundColor = '#000'
 
-      @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+#      @game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT
       @game.scale.pageAlignHorizontally = true
       @game.scale.pageAlignVertically = true
       @game.scale.setScreenSize true
 
       @game.state.add 'Loading', Loading, yes
+      return
 

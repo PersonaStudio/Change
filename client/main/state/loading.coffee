@@ -1,19 +1,23 @@
 define ['Phaser'], (Phaser) ->
 
-  class Preload extends Phaser.State
+  class Loading extends Phaser.State
     constructor: ->
       super
 
     preload: ->
-      @game.load.image 'loadingBar', 'assets/img/demo/preloader-bar.png'
-      return
+      @loadingBar = @game.add.sprite @game.world.centerX, @game.world.centerY , 'loadingBar'
+      @loadingBar.anchor.setTo 0.5
+      @game.load.setPreloadSprite @loadingBar
+
+      @game.load.tilemap 'map', 'assets/img/demo/testing.json', null, 1, Phaser.Tilemap.TILED_JSON
+      @game.load.image 'gameTiles', 'assets/img/demo/tiles.png'
 
     create: ->
-      @game.stage.backgroundColor = '#000'
 
-      @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
-      @game.scale.pageAlignHorizontally = true
-      @game.scale.pageAlignVertically = true
-      @game.scale.setScreenSize true
+
+      return
+
+
+
 
 
