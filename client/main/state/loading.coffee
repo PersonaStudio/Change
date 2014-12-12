@@ -1,4 +1,4 @@
-define ['Phaser', './game'], (Phaser, Game) ->
+define ['Phaser', './game', 'characters'], (Phaser, Game, Character) ->
 
   class Loading extends Phaser.State
     constructor: ->
@@ -19,6 +19,13 @@ define ['Phaser', './game'], (Phaser, Game) ->
       return
 
     create: ->
+
+      player = Character.Player
+
+      player.updateInfo
+        health: 100
+        stamina: 100
+
       @game.state.add 'Game', Game, yes
       return
 

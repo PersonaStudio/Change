@@ -7,6 +7,16 @@ require.config
       location: './main/state'
       main: 'main'
     }
+    {
+      name: 'characters'
+      location: './main/character'
+      main: 'main'
+    }
+    {
+      name: 'services'
+      location: './main/services'
+      main: 'main'
+    }
   ] 
   paths:
     angular: 'lib/bower_components/angular/angular'
