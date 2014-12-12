@@ -17,6 +17,16 @@ require.config
       location: './main/services'
       main: 'main'
     }
+    {
+      name: 'objects'
+      location: './main/object'
+      main: 'main'
+    }
+    {
+      name: 'group'
+      location: './main/group'
+      main: 'main'
+    }
   ] 
   paths:
     angular: 'lib/bower_components/angular/angular'

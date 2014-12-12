@@ -1,4 +1,4 @@
-define ['Phaser', 'characters', 'services'], (Phaser, Character, Services) ->
+define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Character, Object, Group, Services) ->
 
   class Game extends Phaser.State
     constructor: ->
@@ -25,17 +25,22 @@ define ['Phaser', 'characters', 'services'], (Phaser, Character, Services) ->
       @player.getMapPosition @map, 'playerStart', 'objectLayer'
 
       @cursors = @game.input.keyboard.createCursorKeys()
-#      @createItems()
-#      @createDoor()
+
+      @treasureGroup = new Group.Treasure @game
+      @treasureGroup.getData @map, 'objectLayer'
+
+      @doors = new Group.Door @game
+      @doors.getData @map, 'objectLayer'
       return
 
     update: ->
       @player.move @cursors
 
-      @game.physics.arcade.collide @player, @blockedLayer
-#      @game.physics.arcade.collide @player, @backgroundLayer
+      @game.physics.arcade.collide @player.getInstance(), @blockedLayer
 
-      @game.physics.arcade.overlap @player, @items, @collect, null, this
+      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @collect, null, this
+
+      @game.physics.arcade.collide @player.getInstance(), @doors, @getDoor, null, this
 
       return
 
@@ -43,13 +48,8 @@ define ['Phaser', 'characters', 'services'], (Phaser, Character, Services) ->
       collectable.destroy()
       return
 
-    createItems: ->
-      @items = @game.add.group()
-      @items.enableBody = true
-      result = Services.findObjectsByType 'item', @map, 'objectLayer'
-      result.forEach (elm) =>
-        Services.createFromTiledObject elm, @items
-        return
+    getDoor: (player, door) ->
+      console.log 'this is a door'
       return
 
     createDoor: ->

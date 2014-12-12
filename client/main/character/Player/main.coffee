@@ -17,6 +17,8 @@ define [
       @_instance = new TopdownPlayer game, x, y
       return
 
+    getInstance: -> @_instance
+
     addToGame: (game) ->
       game.add.existing @_instance
       return

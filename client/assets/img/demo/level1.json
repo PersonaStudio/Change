@@ -33,7 +33,7 @@
                  "properties":
                     {
                      "sprite":"bluecup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -48,7 +48,7 @@
                  "properties":
                     {
                      "sprite":"greencup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -95,7 +95,7 @@
                  "properties":
                     {
                      "sprite":"bluecup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -110,7 +110,7 @@
                  "properties":
                     {
                      "sprite":"bluecup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -125,7 +125,7 @@
                  "properties":
                     {
                      "sprite":"bluecup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -140,7 +140,7 @@
                  "properties":
                     {
                      "sprite":"greencup",
-                     "type":"item"
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
