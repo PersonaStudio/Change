@@ -7,3 +7,6 @@ define ['Phaser'], (Phaser) ->
       @game.physics.arcade.enableBody this
       @body.immovable = true
 
+    interact: (target) ->
+      console.log target
+

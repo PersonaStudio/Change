@@ -32,8 +32,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"bluecup",
-                     "type":"treasure"
+                      "sprite":"bluecup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 100
                     },
                  "type":"",
                  "visible":true,
@@ -47,8 +49,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"greencup",
-                     "type":"treasure"
+                      "sprite":"greencup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 50
                     },
                  "type":"",
                  "visible":true,
@@ -94,8 +98,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"bluecup",
-                     "type":"treasure"
+                      "sprite":"bluecup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 170
                     },
                  "type":"",
                  "visible":true,
@@ -109,8 +115,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"bluecup",
-                     "type":"treasure"
+                      "sprite":"bluecup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 20
                     },
                  "type":"",
                  "visible":true,
@@ -124,8 +132,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"bluecup",
-                     "type":"treasure"
+                      "sprite":"bluecup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 10
                     },
                  "type":"",
                  "visible":true,
@@ -139,8 +149,10 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"greencup",
-                     "type":"treasure"
+                      "sprite":"greencup",
+                      "type":"treasure",
+                      "name": "gold",
+                      "value": 5
                     },
                  "type":"",
                  "visible":true,

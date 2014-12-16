@@ -24,7 +24,7 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
       @player.addToGame @game
       @player.getMapPosition @map, 'playerStart', 'objectLayer'
 
-      @cursors = @game.input.keyboard.createCursorKeys()
+#      @cursors = @game.input.keyboard.createCursorKeys()
 
       @treasureGroup = new Group.Treasure @game
       @treasureGroup.getData @map, 'objectLayer'
@@ -34,18 +34,18 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
       return
 
     update: ->
-      @player.move @cursors
+      @player.move()
 
       @game.physics.arcade.collide @player.getInstance(), @blockedLayer
 
-      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @collect, null, this
+      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
 
       @game.physics.arcade.collide @player.getInstance(), @doors, @getDoor, null, this
 
       return
 
     collect: (player, collectable) ->
-      collectable.destroy()
+#      collectable.destroy()
       return
 
     getDoor: (player, door) ->

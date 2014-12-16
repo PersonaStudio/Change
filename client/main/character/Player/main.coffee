@@ -38,6 +38,11 @@ define [
       @_instance.move cursors
       return
 
+    interact: (player, object) =>
+      @_instance.interact object
+      return
+
+
 
 
 

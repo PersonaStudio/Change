@@ -27,6 +27,11 @@ require.config
       location: './main/group'
       main: 'main'
     }
+    {
+      name: 'controller'
+      location: './main/controller'
+      main: 'main'
+    }
   ] 
   paths:
     angular: 'lib/bower_components/angular/angular'
