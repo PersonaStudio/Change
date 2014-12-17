@@ -35,7 +35,8 @@
                       "sprite":"bluecup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 100
+                      "value": 100,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,
@@ -52,7 +53,8 @@
                       "sprite":"greencup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 50
+                      "value": 50,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,
@@ -101,7 +103,8 @@
                       "sprite":"bluecup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 170
+                      "value": 170,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,
@@ -118,7 +121,8 @@
                       "sprite":"bluecup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 20
+                      "value": 20,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,
@@ -135,7 +139,8 @@
                       "sprite":"bluecup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 10
+                      "value": 10,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,
@@ -152,7 +157,8 @@
                       "sprite":"greencup",
                       "type":"treasure",
                       "name": "gold",
-                      "value": 5
+                      "value": 5,
+                      "status": "closed"
                     },
                  "type":"",
                  "visible":true,

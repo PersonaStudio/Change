@@ -1,8 +1,9 @@
 define ['Phaser'], (Phaser) ->
 
   class Topdown extends Phaser.Keyboard
-    constructor: (@game, player) ->
+    constructor: (@game, @player) ->
       super @game
+      @instance = @player.getInstance()
 
       @button =
         up: @addKey Phaser.Keyboard.UP
@@ -16,6 +17,22 @@ define ['Phaser'], (Phaser) ->
       @button.select.onDown.add player.select, player
 
       @start()
+
+    move: ->
+      @instance.body.velocity.x = 0
+      @instance.body.velocity.y = 0
+      if @button.up.isDown
+        @button.select.enabled = false
+        @instance.body.velocity.y -= 50
+      else if @button.down.isDown
+        @button.select.enabled = false
+        @instance.body.velocity.y += 50
+      else if @button.left.isDown
+        @button.select.enabled = false
+        @instance.body.velocity.x -=50
+      else if @button.right.isDown
+        @button.select.enabled = false
+        @instance.body.velocity.x += 50
 
 
 

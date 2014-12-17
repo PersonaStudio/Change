@@ -8,5 +8,11 @@ define ['Phaser'], (Phaser) ->
       @body.immovable = true
 
     interact: (target) ->
-      console.log target
+      if @status is 'closed'
+        target.addToInventory
+          name: @name
+          value: @value
+        @status = 'opened'
+        ## TEMPORARY: Remove treasure sprite
+        @destroy()
 

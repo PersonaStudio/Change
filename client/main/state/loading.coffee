@@ -25,6 +25,7 @@ define ['Phaser', './game', 'characters'], (Phaser, Game, Character) ->
       player.updateInfo
         health: 100
         stamina: 100
+        gold: 100
 
       @game.state.add 'Game', Game, yes
       return
