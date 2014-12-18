@@ -37,8 +37,9 @@ define [
 
     getMapPosition: (map, name, targetLayer) ->
       object = Services.findObjectsByType map, name, targetLayer
-      @_instance.x = object[0].x
-      @_instance.y = object[0].y
+      @setPosition
+        x: object[0].x
+        y: object[0].y
       return
 
     move: ->
@@ -52,6 +53,11 @@ define [
 
     select: ->
       @_collideObject.interact this
+
+    setPosition: (point) ->
+      @_instance.x = point.x
+      @_instance.y = point.y
+      return
 
     addToInventory: (item) ->
       if @_inventory[item.name]

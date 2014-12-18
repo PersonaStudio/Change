@@ -24,8 +24,6 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
       @player.addToGame @game
       @player.getMapPosition @map, 'playerStart', 'objectLayer'
 
-#      @cursors = @game.input.keyboard.createCursorKeys()
-
       @treasureGroup = new Group.Treasure @game
       @treasureGroup.getData @map, 'objectLayer'
 
@@ -40,16 +38,8 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
 
       @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
 
-      @game.physics.arcade.collide @player.getInstance(), @doors, @getDoor, null, this
+      @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
 
-      return
-
-    collect: (player, collectable) ->
-#      collectable.destroy()
-      return
-
-    getDoor: (player, door) ->
-      console.log 'this is a door'
       return
 
     createDoor: ->

@@ -8,7 +8,7 @@ define [
       result = []
       map.objects[layer].forEach (elm) ->
         if elm.properties.type is type
-          elm.y -= map.tileHeight
+#          elm.y -= map.tileHeight
           result.push elm
       result
 
