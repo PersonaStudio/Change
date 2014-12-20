@@ -1,11 +1,13 @@
 define [
   'Phaser'
   'services'
+  'notification'
   'controller'
   './topdownPlayer'
 ], (
   Phaser
   Services
+  notification
   Controller
   TopdownPlayer
 ) ->
@@ -64,15 +66,5 @@ define [
         @_inventory[item.name].value += item.value
       else
         @_inventory[item.name] = item
+      notification.updateItem item
       return
-
-
-
-
-
-
-
-
-
-
-

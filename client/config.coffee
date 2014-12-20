@@ -32,6 +32,11 @@ require.config
       location: './main/controller'
       main: 'main'
     }
+    {
+      name: 'notification'
+      location: './main/notification'
+      main: 'main'
+    }
   ] 
   paths:
     angular: 'lib/bower_components/angular/angular'

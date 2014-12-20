@@ -1,4 +1,11 @@
-define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Character, Object, Group, Services) ->
+define [
+  'Phaser'
+  'characters'
+  'objects'
+  'group'
+  'services'
+  'notification'
+], (Phaser, Character, Object, Group, Services, notification) ->
 
   class Game extends Phaser.State
     constructor: ->
@@ -29,9 +36,13 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
 
       @doors = new Group.Door @game
       @doors.getData @map, 'objectLayer'
+
+      notification.updatePlace @map.key
       return
 
     update: ->
+      notification.update()
+
       @player.move()
 
       @game.physics.arcade.collide @player.getInstance(), @blockedLayer
@@ -41,17 +52,3 @@ define ['Phaser', 'characters', 'objects', 'group', 'services'], (Phaser, Charac
       @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
 
       return
-
-    createDoor: ->
-      @doors = @game.add.group()
-      @doors.enableBody = true
-      result = Services.findObjectsByType 'door', @map, 'objectLayer'
-      result.forEach (elm) =>
-        Services.createFromTiledObject elm, @doors
-
-
-
-
-
-
-
