@@ -18,21 +18,23 @@ define ['Phaser'], (Phaser) ->
 
       @start()
 
-    move: ->
+    move: (player) ->
       @instance.body.velocity.x = 0
       @instance.body.velocity.y = 0
       if @button.up.isDown
         @button.select.enabled = false
-        @instance.body.velocity.y -= 50
+        player.goUp()
       else if @button.down.isDown
         @button.select.enabled = false
-        @instance.body.velocity.y += 50
+        player.goDown()
       else if @button.left.isDown
         @button.select.enabled = false
-        @instance.body.velocity.x -=50
+        player.goLeft()
       else if @button.right.isDown
         @button.select.enabled = false
-        @instance.body.velocity.x += 50
+        player.goRight()
+      else
+        player.stay()
 
 
 

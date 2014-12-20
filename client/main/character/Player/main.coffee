@@ -45,7 +45,7 @@ define [
       return
 
     move: ->
-      @_controller.move()
+      @_controller.move(@_instance)
       return
 
     interact: (player, object) =>
