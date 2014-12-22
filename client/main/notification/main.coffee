@@ -30,7 +30,7 @@ define [
     updatePlace: (place) ->
       msg = place
       @addToPool msg
-      
+
     update: ->
       ## this function will be call by Stage.update()
       if @currentMsg

@@ -13,13 +13,35 @@ define [
       @player = Character.Player
 
     create: ->
+
       @map = @game.add.tilemap 'map'
-      @map.addTilesetImage 'tiles', 'gameTiles'
 
-      @backgroundLayer = @map.createLayer 'backgroundLayer'
-      @blockedLayer = @map.createLayer 'blockedLayer'
+      @map.addTilesetImage 'MedTown', 'MedTown'
+      @map.addTilesetImage 'Mud', 'Mud'
+      @map.addTilesetImage 'Road', 'Road'
+      @map.addTilesetImage 'Citadelle', 'Citadelle'
+      @map.addTilesetImage 'Dirt', 'Dirt'
+      @map.addTilesetImage 'Dirt1', 'Dirt1'
+      @map.addTilesetImage 'Dirt2', 'Dirt2'
+      @map.addTilesetImage 'Water', 'Water'
+      @map.addTilesetImage 'Water1', 'Water1'
+      @map.addTilesetImage 'Water2', 'Water2'
+      @map.addTilesetImage 'Water3', 'Water3'
+      @map.addTilesetImage 'Water4', 'Water4'
+      @map.addTilesetImage 'ROTATE_Citadelle', 'ROTATE_Citadelle'
 
-      @map.setCollisionBetween 1, 2000, true, 'blockedLayer'
+
+      @backgroundLayer = @map.createLayer 'Ground'
+      @map.createLayer 'Rocks'
+      @map.createLayer 'Road'
+      @map.createLayer 'Tree2'
+      @map.createLayer 'Tree1'
+      @house = @map.createLayer 'House'
+      @map.createLayer 'Decoration house'
+      @map.createLayer 'Trees'
+      @map.createLayer 'Decoration2'
+
+      @map.setCollisionBetween 1, 10000, true, @house
 #      @map.setCollisionBetween 1, 2000, true, 'backgroundLayer'
 #      @backgroundLayer.position.set @game.world.centerX - 300, @game.world.centerY - 400
 #      @blockedLayer.position.set @game.world.centerX - 300, @game.world.centerY - 400
@@ -29,26 +51,26 @@ define [
 
       @player.createInstance 'Topdown', @game
       @player.addToGame @game
-      @player.getMapPosition @map, 'playerStart', 'objectLayer'
+      @player.getMapPosition @map, 'playerStart', 'player'
 
-      @treasureGroup = new Group.Treasure @game
-      @treasureGroup.getData @map, 'objectLayer'
-
-      @doors = new Group.Door @game
-      @doors.getData @map, 'objectLayer'
-
-      notification.updatePlace @map.key
+#      @treasureGroup = new Group.Treasure @game
+#      @treasureGroup.getData @map, 'objectLayer'
+#
+#      @doors = new Group.Door @game
+#      @doors.getData @map, 'objectLayer'
+#
+#      notification.updatePlace @map.key
       return
 
     update: ->
-      notification.update()
-
+#      notification.update()
+#
       @player.move()
-
-      @game.physics.arcade.collide @player.getInstance(), @blockedLayer
-
-      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
-
-      @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
+#
+      @game.physics.arcade.collide @player.getInstance(), @house
+#
+#      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
+#
+#      @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
 
       return

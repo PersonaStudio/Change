@@ -34,7 +34,8 @@ define [
     getInstance: -> @_instance
 
     addToGame: (game) ->
-      game.add.existing @_instance
+#      game.add.existing @_instance
+      game.world.addAt @_instance, 3
       return
 
     getMapPosition: (map, name, targetLayer) ->

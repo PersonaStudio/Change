@@ -1,8 +1,8 @@
 require [ 'Phaser', 'states'], (Phaser, states) ->
 
   config =
-    width: 160
-    height: 160
+    width: 600
+    height: 600
 
   frame = window.document.getElementById 'gamestage'
   frame.style.width = window.innerWidth
