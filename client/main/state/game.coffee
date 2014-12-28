@@ -5,7 +5,8 @@ define [
   'group'
   'services'
   'notification'
-], (Phaser, Character, Object, Group, Services, notification) ->
+  'controller'
+], (Phaser, Character, Object, Group, Services, notification, Controller) ->
 
   class Game extends Phaser.State
     constructor: ->
@@ -36,12 +37,12 @@ define [
       @map.createLayer 'Road'
       @map.createLayer 'Tree2'
       @map.createLayer 'Tree1'
-      @house = @map.createLayer 'House'
+      @map.createLayer 'House'
       @map.createLayer 'Decoration house'
       @map.createLayer 'Trees'
       @map.createLayer 'Decoration2'
 
-      @map.setCollisionBetween 1, 10000, true, @house
+#      @map.setCollisionBetween 1, 10000, true, @house
 #      @map.setCollisionBetween 1, 2000, true, 'backgroundLayer'
 #      @backgroundLayer.position.set @game.world.centerX - 300, @game.world.centerY - 400
 #      @blockedLayer.position.set @game.world.centerX - 300, @game.world.centerY - 400
@@ -58,16 +59,21 @@ define [
 #
 #      @doors = new Group.Door @game
 #      @doors.getData @map, 'objectLayer'
-#
+
+      @controller = new Controller.Topdown @game
+
 #      notification.updatePlace @map.key
       return
 
     update: ->
 #      notification.update()
-#
-      @player.move()
-#
-      @game.physics.arcade.collide @player.getInstance(), @house
+
+      command = @controller.inputHandle()
+      if command
+        command.execute @player
+      else @player.stay()
+
+#      @game.physics.arcade.collide @player.getInstance(), @house
 #
 #      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
 #

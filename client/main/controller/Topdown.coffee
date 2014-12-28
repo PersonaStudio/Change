@@ -1,44 +1,53 @@
 define ['Phaser'], (Phaser) ->
 
   class Topdown extends Phaser.Keyboard
-    constructor: (@game, @player) ->
+    constructor: (@game) ->
       super @game
-      @instance = @player.getInstance()
 
-      @button =
-        up: @addKey Phaser.Keyboard.UP
-        down: @addKey Phaser.Keyboard.DOWN
-        left: @addKey Phaser.Keyboard.LEFT
-        right: @addKey Phaser.Keyboard.RIGHT
-        select: @addKey Phaser.Keyboard.S
-        cancel: @addKey Phaser.Keyboard.D
+      @up = @addKey Phaser.Keyboard.UP
+      @down = @addKey Phaser.Keyboard.DOWN
+      @left = @addKey Phaser.Keyboard.LEFT
+      @right = @addKey Phaser.Keyboard.RIGHT
+      @select = @addKey Phaser.Keyboard.S
+      @cancel = @addKey Phaser.Keyboard.D
 
-      @button.select.enabled = false
-      @button.select.onDown.add player.select, player
+      @up.execute = (actor) ->
+        actor.goUp()
+        return
+
+      @down.execute = (actor) ->
+        actor.goDown()
+        return
+
+      @left.execute = (actor) ->
+        actor.goLeft()
+        return
+
+      @right.execute = (actor) ->
+        actor.goRight()
+        return
+
+      @select.execute = (actor) ->
+        actor.select()
+        return
+
+      @up.cancel = (actor) ->
+        console.log actor
+        return
 
       @start()
 
-    move: (player) ->
-      @instance.body.velocity.x = 0
-      @instance.body.velocity.y = 0
-      if @button.up.isDown
-        @button.select.enabled = false
-        player.goUp()
-      else if @button.down.isDown
-        @button.select.enabled = false
-        player.goDown()
-      else if @button.left.isDown
-        @button.select.enabled = false
-        player.goLeft()
-      else if @button.right.isDown
-        @button.select.enabled = false
-        player.goRight()
-      else
-        player.stay()
-
-
-
-
-
-
-
+    inputHandle: ->
+      if @up.isDown
+        return @up
+      if @down.isDown
+        return @down
+      if @left.isDown
+        return @left
+      if @right.isDown
+        return @right
+      if @select.isDown
+        return @select
+      if @cancel.isDown
+        return @cancel
+      return null

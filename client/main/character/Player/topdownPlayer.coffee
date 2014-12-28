@@ -17,32 +17,40 @@ define ['Phaser'], (Phaser) ->
 
       return
 
+    resetVelocity: ->
+      @body.velocity.y = 0
+      @body.velocity.x = 0
+      return
+
     goUp: ->
+      @resetVelocity()
       @body.velocity.y -= 100
       @animations.play 'walkup'
       @currrentAnimation = 'walkup'
       return
 
    	goDown: ->
+      @resetVelocity()
       @body.velocity.y += 100
       @animations.play 'walkdown'
       @currrentAnimation = 'walkdown'
 
-
-
    	goLeft: ->
+      @resetVelocity()
       @body.velocity.x -=100
       @animations.play 'walkleft'
       @currrentAnimation = 'walkleft'
 
 
    	goRight: ->
+      @resetVelocity()
       @body.velocity.x += 100
       @animations.play 'walkright'
       @currrentAnimation = 'walkright'
 
     stay: ->
       @animations.stop @currrentAnimation, false
+      @resetVelocity()
       return
 
 
