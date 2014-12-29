@@ -3,7 +3,7 @@ define ['Phaser'], (Phaser) ->
   class TopdownPlayer extends Phaser.Sprite
     constructor: (@game, x, y, frame) ->
       ## create character
-      super @game, x, y, 'player', frame
+      super @game, x, y, 'character', frame
 
       @game.physics.arcade.enable this
       @game.camera.follow this

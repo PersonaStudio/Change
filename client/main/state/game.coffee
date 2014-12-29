@@ -52,7 +52,7 @@ define [
 
       @player.createInstance 'Topdown', @game
       @player.addToGame @game
-      @player.getMapPosition @map, 'playerStart', 'player'
+      @player.getMapPosition @map, 'playerStart', 'characters'
 
 #      @treasureGroup = new Group.Treasure @game
 #      @treasureGroup.getData @map, 'objectLayer'
@@ -61,6 +61,10 @@ define [
 #      @doors.getData @map, 'objectLayer'
 
       @controller = new Controller.Topdown @game
+
+      @npcGroup = new Group.NPC @game
+      @npcGroup.getData @map, 'characters'
+
 
 #      notification.updatePlace @map.key
       return
@@ -72,6 +76,8 @@ define [
       if command
         command.execute @player
       else @player.stay()
+
+      @game.physics.arcade.collide @player.getInstance(), @npcGroup
 
 #      @game.physics.arcade.collide @player.getInstance(), @house
 #

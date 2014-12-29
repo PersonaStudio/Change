@@ -35,28 +35,43 @@
         }, 
         {
          "draworder":"topdown",
-         "height":60,
-         "name":"player",
+         "height":0,
+         "name":"characters",
          "objects":[
                 {
                  "gid":7071,
                  "height":0,
-                 "name":"",
+                 "name":"player",
                  "properties":
                     {
-                      "type":"playerStart"
+                       "type":"playerStart"
                     },
                  "rotation":0,
-                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":936,
                  "y":792
+                }, 
+                {
+                 "gid":7078,
+                 "height":0,
+                 "name":"elder",
+                 "properties":
+                    {
+                      "type":"npc",
+                      "frame": 7,
+                      "immovable": true
+                    },
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":930,
+                 "y":616
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":60,
+         "width":0,
          "x":0,
          "y":0
         }, 

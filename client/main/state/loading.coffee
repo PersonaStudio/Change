@@ -27,7 +27,8 @@ define ['Phaser', './game', 'characters'], (Phaser, Game, Character) ->
 
 
       # @game.load.image 'player', 'assets/img/demo/player.png'
-      @game.load.spritesheet 'player', 'assets/img/list.png', 32, 32, 48
+      @game.load.spritesheet 'character', 'assets/img/list.png', 32, 32, 48
+      @game.load.spritesheet 'npc', 'assets/img/list.png', 32, 32, 48
 #      @game.load.image 'bluecup', 'assets/img/demo/bluecup.png'
 #      @game.load.image 'greencup', 'assets/img/demo/greencup.png'
 #      @game.load.image 'browndoor', 'assets/img/demo/browndoor.png'
