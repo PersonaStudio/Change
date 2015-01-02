@@ -6,7 +6,8 @@ define [
   'services'
   'notification'
   'controller'
-], (Phaser, Character, Object, Group, Services, notification, Controller) ->
+  'Dialog'
+], (Phaser, Character, Object, Group, Services, notification, Controller, Dialog) ->
 
   class Game extends Phaser.State
     constructor: ->
@@ -73,16 +74,21 @@ define [
 #      notification.update()
 
       command = @controller.inputHandle()
-      if command
-        command.execute @player
-      else @player.stay()
+      #TODO: refactor this code later
+      if Dialog.enableDialog
+        if command
+          command.execute Dialog
+      else
+        if command
+          command.execute @player
+        else @player.stay()
 
-      @game.physics.arcade.collide @player.getInstance(), @npcGroup
+        @game.physics.arcade.collide @player.getInstance(), @npcGroup, @player.interact, null, this
 
-#      @game.physics.arcade.collide @player.getInstance(), @house
-#
-#      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
-#
-#      @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
+  #      @game.physics.arcade.collide @player.getInstance(), @house
+  #
+  #      @game.physics.arcade.collide @player.getInstance(), @treasureGroup, @player.interact, null, this
+  #
+  #      @game.physics.arcade.collide @player.getInstance(), @doors, @player.interact, null, this
 
       return

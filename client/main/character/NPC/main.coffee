@@ -1,7 +1,9 @@
 define [
   'Phaser'
+  'Dialog'
 ], (
   Phaser
+  Dialog
 ) ->
   class NPC extends Phaser.Sprite
     constructor: (@game, x, y, key = 'npc', frame) ->
@@ -24,3 +26,7 @@ define [
 
       return
 
+    interact: (target) ->
+      Dialog.startConversation @name
+
+      return

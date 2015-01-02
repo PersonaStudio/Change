@@ -30,10 +30,12 @@ define ['Phaser'], (Phaser) ->
       @select.execute = (actor) ->
         actor.select()
         return
+      @select.downStatus = false
 
-      @up.cancel = (actor) ->
+      @cancel.execute = (actor) ->
         console.log actor
         return
+      @cancel.downStatus = false
 
       @start()
 
@@ -47,7 +49,14 @@ define ['Phaser'], (Phaser) ->
       if @right.isDown
         return @right
       if @select.isDown
-        return @select
-      if @cancel.isDown
-        return @cancel
+        if not @select.downStatus
+          @select.downStatus = true
+          return @select
+      if @select.isUp
+        @select.downStatus = false
+
+
+
+
+
       return null

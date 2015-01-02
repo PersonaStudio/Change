@@ -60,7 +60,8 @@
                     {
                       "type":"npc",
                       "frame": 7,
-                      "immovable": true
+                      "immovable": true,
+                      "name": "old men"
                     },
                  "rotation":0,
                  "visible":true,
