@@ -37,12 +37,18 @@ require.config
       location: './main/notification'
       main: 'main'
     }
+    {
+      name: 'Dialog'
+      location: './main/dialog'
+      main: 'main'
+    }
   ] 
   paths:
     angular: 'lib/bower_components/angular/angular'
     'angular-animate': 'lib/bower_components/angular-animate/angular-animate'
     requireLib: 'lib/bower_components/requirejs/require'
     'ui-bootstrap': 'lib/bower_components/angular-bootstrap/ui-bootstrap-tpls'
+    'Promise': 'lib/bluebird/bluebird'
 
     'Phaser': 'lib/bower_components/phaser/build/phaser'
     config: 'config'
