@@ -66,15 +66,14 @@ define [
       @_instance.stay()
 
     interact: (player, object) =>
+      console.log object
       @_collideObject = object
-      @isCollided = true
+      @_isCollided = true
       return
 
     select: ->
-      if @isCollided
+      if @_isCollided
         @_collideObject.interact this
-
-
 
     setPosition: (point) ->
       @_instance.x = point.x

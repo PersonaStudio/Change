@@ -16,6 +16,7 @@ define [
 
     create: ->
 
+      Dialog.setGameObject @game
       @map = @game.add.tilemap 'map'
 
       @map.addTilesetImage 'MedTown', 'MedTown'
