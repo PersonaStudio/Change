@@ -11,6 +11,8 @@ define [
       @_currentScript = null
       @enableDialog = null
       @text = null
+      @fullText = ''
+      @displayText = ''
       @containBox = null
       @game = null
       @dialogPosition = null
@@ -58,23 +60,36 @@ define [
       @text.wordWrapWidth = @containBox.width - 20
       @game.add.existing @text
 
+    updateLine: =>
+      if @displayText.length < @fullText.length
+        @displayText = @fullText.substr 0, @displayText.length + 1
+        @text.setText @displayText
+      return
+
     renderText: (content) ->
-      console.log content
-      @text.setText content.msg
-      
+      @fullText = content.msg
+      @displayText = ''
+      @game.time.events.repeat 80, content.msg.length + 1, @updateLine, this
 
 
+    cancelAnimation: ->
+      @text.setText @fullText
+      @game.time.events.removeAll()
+      @displayText = ''
+      @fullText = ''
       
     executingScript: ->
-      displayDialog = @_currentScript.shift()
-      console.log displayDialog
-
-      if not displayDialog
-        @enableDialog = false
-        @game.world.remove @containBox
-        @game.world.remove @text
+      if @displayText.length < @fullText.length
+        @cancelAnimation()
       else
-        @renderText displayDialog
+        displayDialog = @_currentScript.shift()
+
+        if not displayDialog
+          @enableDialog = false
+          @game.world.remove @containBox
+          @game.world.remove @text
+        else
+          @renderText displayDialog
 
 
 
