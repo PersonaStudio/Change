@@ -66,7 +66,6 @@ define [
       @_instance.stay()
 
     interact: (player, object) =>
-      console.log object
       @_collideObject = object
       @_isCollided = true
       return
