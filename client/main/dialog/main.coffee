@@ -18,19 +18,21 @@ define [
 
       @_script =
         'old men':
-          type: 'normal'
-          msg: [
+          [
             {
               name:'old men'
               msg: 'how are you?'
+              type: 'normal'
             }
             {
               name: 'hero'
               msg: "I'm fine, and you ?"
+              type: 'normal'
             }
             {
               name:'old men'
               msg: "Welcome to my shop."
+              type: 'normal'
             }
           ]
 
@@ -47,22 +49,18 @@ define [
       @containBox.x = x
       @containBox.y = y
 
-    executingScript: ->
-      result = TextRender.executeScript()
-      if result
-        displayDialog = @_currentScript.shift()
-
-        if not displayDialog
-          @enableDialog = false
-          @game.world.remove @containBox
-          TextRender.remove()
-        else
-          TextRender.render @game, displayDialog, @containBox
+    executingScript: ->      
+      displayDialog = @_currentScript.shift()
+      if not displayDialog
+        @enableDialog = false
+        @game.world.remove @containBox
+        TextRender.remove @game
+      else
+        TextRender.render @game, displayDialog, @containBox
 
     startConversation: (character) ->
       @enableDialog = true
-      @_currentScript = @_script[character]
-      console.log @_currentScript
+      @_currentScript = @_script[character].slice()
       @createDialog @game.camera.view.x, @game.camera.view.y
       @executingScript()
 
@@ -79,7 +77,9 @@ define [
       return
 
     select: ->
-      @executingScript()
+      result = TextRender.executeScript()
+      if result
+        @executingScript()
 
 
 

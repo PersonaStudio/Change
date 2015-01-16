@@ -31,11 +31,12 @@ define [
     cancelAnimation: ->
       @setText @fullText
       @game.time.events.removeAll()
-      @displayText = null
-      @fullText = null
+      @displayText = @fullText
       return
 
     select: ->
       if @displayText.length < @fullText.length
         @cancelAnimation()
-      true
+        false
+      else
+        true
