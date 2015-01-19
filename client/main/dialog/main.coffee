@@ -34,6 +34,14 @@ define [
               msg: "Welcome to my shop."
               type: 'normal'
             }
+            {
+              type: 'select'
+              options: [
+                'Go left'
+                'Go right'
+              ]
+              title: 'Where do you go?'
+            }
           ]
 
     setGameObject: (game) ->
@@ -65,9 +73,11 @@ define [
       @executingScript()
 
     goUp: ->
+      TextRender.goUp()
       return
 
     goDown: ->
+      TextRender.goDown()
       return
 
     goLeft: ->

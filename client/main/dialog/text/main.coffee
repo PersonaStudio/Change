@@ -8,7 +8,7 @@ define [
   SelectText
 ) ->
   style:
-    font: 'bold 20pt Arial'
+    font: 'bold 16pt Arial'
     fill: 'white'
     align: 'left'
     wordWrap: true
@@ -20,14 +20,20 @@ define [
       when 'normal'
         @_instance = new NormalText game, containBox, script.msg, @style
       when 'select'
-        @_instance = new SelectText game, containBox, script.msg, @stylethis
+        @_instance = new SelectText game, containBox, script, @style
     game.add.existing @_instance
     @_instance
 
   executeScript: ->
     @_instance.select()
 
-  remove: (game) ->
+  goUp: ->
+    @_instance.goUp()
+
+  goDown: ->
+    @_instance.goDown()
+
+remove: (game) ->
     game.world.remove @_instance
     @_instance.destroy true
 

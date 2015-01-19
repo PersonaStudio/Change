@@ -15,7 +15,7 @@ define [
 
     updateBound: (x, y, width) ->
       @x = x + 20
-      @y = y - 20
+      @y = y + 10
       @wordWrapWidth = width - 40
 
     updateLine: =>
@@ -40,3 +40,7 @@ define [
         false
       else
         true
+
+    goUp: -> null
+
+    goDown: -> null
