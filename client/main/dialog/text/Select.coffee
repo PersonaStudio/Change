@@ -1,8 +1,10 @@
 define [
   'Phaser'
+  'underscore'
   './Normal'
 ], (
   Phaser
+  _
   NormalText
 ) ->
 
@@ -43,17 +45,17 @@ define [
         @cancelAnimation()
       true
 
-    goUp: ->
-      console.log @cursor.isSelect
+    goUp: _.debounce ->
       if @cursor.isSelect is 0
         @setSelectOption @optionList.length - 1
       else
         @setSelectOption @cursor.isSelect - 1
+    , 100, true
 
 
-    goDown: ->
-      console.log @cursor.isSelect
+    goDown: _.debounce ->
       if @cursor.isSelect is @optionList.length - 1
         @setSelectOption 0
       else
         @setSelectOption @cursor.isSelect + 1
+    , 100, true

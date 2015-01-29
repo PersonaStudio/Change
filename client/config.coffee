@@ -48,6 +48,7 @@ require.config
     'angular-animate': 'lib/bower_components/angular-animate/angular-animate'
     requireLib: 'lib/bower_components/requirejs/require'
     'ui-bootstrap': 'lib/bower_components/angular-bootstrap/ui-bootstrap-tpls'
+    'underscore': 'lib/bower_components/underscore/underscore'
     'Promise': 'lib/bluebird/bluebird'
 
     'Phaser': 'lib/bower_components/phaser/build/phaser'
@@ -62,6 +63,8 @@ require.config
       deps: ['angular']
     'ui-bootstrap':
       deps: ['angular']
+    'underscore':
+      exports: '_'
 
 # optimization config
   modules: [

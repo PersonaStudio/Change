@@ -33,7 +33,7 @@ define [
   goDown: ->
     @_instance.goDown()
 
-remove: (game) ->
+  remove: (game) ->
     game.world.remove @_instance
     @_instance.destroy true
 
